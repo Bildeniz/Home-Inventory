@@ -4,7 +4,7 @@ from flask_restful import Api, Resource
 from wtforms import Form, StringField, BooleanField, TextAreaField, validators, ValidationError, SelectField
 from wtforms.fields.html5 import DateField 
 from func import secretKey
-from api import addProperty, manageInventory, viewInventoryID, viewInvetory
+from api import addProperty, manageInventory, viewInventoryID, viewInventory
 import datetime
 import requests
 
@@ -24,7 +24,7 @@ db = MySQL(app)
 api = Api(app)
 
 api.add_resource(viewInventoryID, '/viewInventory/<int:id>')
-api.add_resource(viewInvetory, '/viewInventory')
+api.add_resource(viewInventory, '/viewInventory')
 api.add_resource(addProperty, '/manageInventory')
 api.add_resource(manageInventory, '/manageInventory/<int:id>')
 
@@ -38,11 +38,8 @@ class registerPropertyForm(Form):
 
 @app.route('/')
 def index():
-    cursor = db.connection.cursor()
-    cursor.execute('SELECT * FROM property')
-    data = cursor.fetchall()
-    cursor.close()
-    return render_template('index.html', datas=data)
+    response = requests.get(baseurl+'/viewInventory')
+    return render_template('index.html', datas=response.json())
 
 @app.route('/addProperty', methods=['POST', 'GET'])
 def addProperty():

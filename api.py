@@ -38,7 +38,7 @@ class viewInventoryID(Resource):
         return data
         
 
-class viewInvetory(Resource):
+class viewInventory(Resource):
     def get(self):
         db = database()
         cursor = db.cursor()
@@ -46,6 +46,8 @@ class viewInvetory(Resource):
         data = list(cursor.fetchall())
         cursor.close()
         db.close()
+        for i in data:
+            i['buy_date'] = str(i['buy_date'])
         return data
 
 class addProperty(Resource):
