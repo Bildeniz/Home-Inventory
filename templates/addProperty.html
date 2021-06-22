@@ -1,0 +1,16 @@
+{% from "/includes/formhelpers.html" import render_field %}
+{% extends 'layout.html' %}
+{% block title %}{{ Title }}{% endblock  %}
+{% block content %}
+    <h1 class="display-3 text-center">{{ Title }}</h1>
+    <form method="post">
+        <div class="form-group">
+            {{ render_field(form.name, class="form-control") }}
+            {{ render_field(form.mark, class="form-control") }}
+            {{ render_field(form.description, class="form-control") }}
+            {{ render_field(form.is_added) }}
+            {{ render_field(form.buy_date) }}
+            <input type=submit value="{{ Title }}" class="btn btn-primary float-end">
+        </div>
+    </form>
+{% endblock  %}

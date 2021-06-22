@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+{% block title %}Ana sayfa{% endblock  %}
+{% block content %}
+    <h1 class="display-3 text-center">Ev Envanteri</h1>
+    <table class="table">
+        <thead>
+            <th scope="col">ID</th>
+            <th scope="col">Eşya İsmi</th>
+            <th scope="col">Eşya işareti</th>
+            <th scope="col">Alınma Tarihi</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </thead>
+        <tbody>
+    {% for data in datas %}
+            <tr>
+                <th>{{ data._id }}</th>
+                <th>{{ data.name }}</th>
+                <th>{{ data.mark }}</th>
+                <th>{{ data.buy_date }}</th>
+                <th><a class="btn btn-outline-primary" href="/updateProperty/{{ data._id }}">Düzenle</a></th>
+                <th><a href="/deleteProperty/{{ data._id }}" class="btn btn-danger">Sil</a></th>
+            </tr>
+    {% endfor %}
+        </tbody>
+    </table>
+    <a href="/addProperty" class="btn btn-primary float-end">Eşya Ekle</a>
+{% endblock  %}
