@@ -25,3 +25,5 @@ ve sunucumuzu başlatıyoruz
 
 ```python3 main.py```
 
+### NOT: Bu bir deneme projesidir herhangi bir amaca hizmet etmesi için yapılmamıştır.
+
